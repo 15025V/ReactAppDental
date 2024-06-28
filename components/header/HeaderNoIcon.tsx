@@ -22,15 +22,18 @@ const styles = StyleSheet.create({
   headerContainer: {
     width: '100%',
     height: 255, // Ajusta este valor basado en tu diseño
+    zIndex: -1,
   },
   containeSvg: {
     width: '100%',
     height: 255,
+    zIndex: -1, // Asegura que este elemento esté por encima
   },
   wavyF: {
     position: 'absolute',
     width: width,
-    marginTop: 30,
+    marginTop:30 ,
     height: 260,
+    zIndex: -1, // Asegura que este elemento esté por debajo
   },
 });
