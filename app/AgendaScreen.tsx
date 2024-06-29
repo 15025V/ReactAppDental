@@ -1,19 +1,19 @@
 import HeaderNoIcon from '@/components/header/HeaderNoIcon';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, ScrollView } from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, DateObject } from 'react-native-calendars';
 
 const { width, height } = Dimensions.get('window');
 
 export default function AgendaScreen() {
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedDay, setSelectedDay] = useState<string | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
-  const handleDayPress = (day) => {
+  const handleDayPress = (day: DateObject) => {
     setSelectedDay(day.dateString);
   };
 
-  const handleTimeSelect = (time) => {
+  const handleTimeSelect = (time: string) => {
     setSelectedTime(time);
   };
 
@@ -23,18 +23,17 @@ export default function AgendaScreen() {
         <HeaderNoIcon />
         <Text style={styles.text}>Citas</Text>
         <Calendar
-          // Configuración del calendario
           onDayPress={handleDayPress}
           markedDates={{
-            [selectedDay]: { selected: true, marked: true, selectedColor: 'blue' },
+            [selectedDay || '']: { selected: true, marked: true, selectedColor: 'blue' },
           }}
           theme={{
-            calendarBackground: 'transparent', // Fondo transparente
-            textSectionTitleColor: '#000000', // Color de los títulos de las secciones
-            dayTextColor: '#000000', // Color de los números de los días
-            todayTextColor: '#0000ff', // Color del texto del día actual
-            selectedDayTextColor: '#ffffff', // Color del texto del día seleccionado
-            selectedDayBackgroundColor: '#0000ff', // Color de fondo del día seleccionado
+            calendarBackground: 'transparent',
+            textSectionTitleColor: '#000000',
+            dayTextColor: '#000000',
+            todayTextColor: '#0000ff',
+            selectedDayTextColor: '#ffffff',
+            selectedDayBackgroundColor: '#0000ff',
           }}
           style={styles.calendar}
         />
@@ -80,33 +79,23 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  headerContainer: {
-    position: 'absolute',
-    width: '100%',
-    height: 255,
-    zIndex: -1,
-    marginTop:'auto',
-  },
   scrollViewContent: {
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 0,
   },
   text: {
     fontSize: 24,
-    color: '#000000',
-    marginTop: 20,
-    textAlign: 'center',
+    fontWeight: 'bold',
+    marginVertical: 20,
   },
   calendar: {
-    marginTop: 25,
-    zIndex: 1,
-    width: width * 0.9, // Ajusta el ancho del calendario
+    width: width * 0.9,
+    marginBottom: 20,
   },
   section: {
-    marginTop: 20,
-    paddingHorizontal: 20,
+    width: width * 0.9,
+    marginBottom: 20,
   },
   sectionTitle: {
     fontSize: 18,
@@ -116,24 +105,25 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    marginTop: 15,
+    marginBottom: 10,
   },
   timeSlot: {
-    backgroundColor: '#e0f7fa',
     padding: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
     borderRadius: 5,
-    marginTop: 5,
+    marginBottom: 10,
+    alignItems: 'center',
   },
   selectedTimeSlot: {
-    backgroundColor: '#4caf50', // Color de fondo para el horario seleccionado
+    backgroundColor: '#007bff',
+    borderColor: '#007bff',
   },
   button: {
     backgroundColor: '#007bff',
-    padding: 15,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     borderRadius: 5,
-    alignItems: 'center',
-    marginTop: 20,
-    marginHorizontal: 20,
   },
   buttonText: {
     color: '#fff',

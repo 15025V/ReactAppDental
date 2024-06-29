@@ -1,17 +1,36 @@
-
 import HeaderNoIcon from '@/components/header/HeaderNoIcon';
-import { StyleSheet, Image, Platform, View, _View, Text, Dimensions } from 'react-native';
+import { StyleSheet, TextInput, TouchableOpacity, View, Text, Dimensions } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
 export default function TabTwoScreen() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-        <HeaderNoIcon/>
+      <HeaderNoIcon />
       <View style={styles.content}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="arrow-back" size={24} color="black" />
+        </TouchableOpacity>
         <Text style={styles.text}>
-          Chatea con el Doc
+          Nombre del Doctor
         </Text>
+      </View>
+      <View style={styles.chatArea}>
+        {/* Aquí irían los mensajes del chat */}
+      </View>
+      <View style={styles.inputArea}>
+        <TextInput
+          style={styles.input}
+          placeholder="Escribe tu mensaje..."
+          placeholderTextColor="#888"
+        />
+        <TouchableOpacity style={styles.sendButton}>
+          <Ionicons name="send" size={24} color="white" />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -23,15 +42,43 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff', // Color de fondo blanco
   },
   content: {
-    flex: 1,
-    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingTop: 20, // Espacio adicional en la parte superior del contenido
+    paddingTop: 10, // Espacio adicional en la parte superior del contenido
+    paddingHorizontal: 10,
+  },
+  backButton: {
+    marginRight: 10,
+    marginTop: 10, // Mueve la flecha más arriba
+    
   },
   text: {
     fontSize: 24,
     color: '#000000', // Color negro
-    marginTop: 20,
+    marginTop: 10,
   },
-  
+  chatArea: {
+    flex: 1,
+    padding: 10,
+  },
+  inputArea: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: 'white',
+  },
+  input: {
+    flex: 1,
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    marginRight: 10,
+  },
+  sendButton: {
+    backgroundColor: '#007AFF',
+    borderRadius: 20,
+    padding: 10,
+  },
 });

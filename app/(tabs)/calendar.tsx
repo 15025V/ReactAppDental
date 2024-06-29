@@ -1,21 +1,23 @@
 import HeaderNoIcon from '@/components/header/HeaderNoIcon';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 
 const { width } = Dimensions.get('window');
 
 export default function DentalHealthScreen() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
-        <HeaderNoIcon/>
+      <HeaderNoIcon />
       <View style={styles.content}>
         <Text style={styles.greeting}>¡Hola [Nombre del Paciente]!</Text>
         <Text style={styles.message}>Actualmente, no tenemos una cita registrada a tu nombre.</Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AgendaScreen')}>
           <Text style={styles.buttonText}>Programar cita</Text>
         </TouchableOpacity>
       </View>
-      
     </View>
   );
 }
@@ -24,24 +26,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  header: {
-    width: '100%',
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#007bff',
-  },
-  backgroundImage: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
-  },
-  logoText: {
-    fontSize: 24,
-    color: '#fff',
-    fontWeight: 'bold',
   },
   content: {
     flex: 1,
@@ -69,23 +53,5 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
-  },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingVertical: 10,
-    borderTopWidth: 1,
-    borderTopColor: '#ddd',
-  },
-  footerItem: {
-    alignItems: 'center',
-  },
-  footerIcon: {
-    width: 24,
-    height: 24,
-    marginBottom: 5,
-  },
-  footerText: {
-    fontSize: 12,
   },
 });
