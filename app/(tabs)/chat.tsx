@@ -11,13 +11,13 @@ export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
       <HeaderNoIcon />
-      <View style={styles.content}>
         <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
         <Text style={styles.text}>
           Nombre del Doctor
         </Text>
+      <View style={styles.content}>
       </View>
       <View style={styles.chatArea}>
         {/* Aquí irían los mensajes del chat */}
@@ -46,16 +46,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 10, // Espacio adicional en la parte superior del contenido
     paddingHorizontal: 10,
+    
   },
   backButton: {
-    marginRight: 10,
-    marginTop: 10, // Mueve la flecha más arriba
-    
+    marginRight: 25,
+    marginTop: -200, // Mueve la flecha más arriba
+    marginLeft:10,
   },
   text: {
     fontSize: 24,
     color: '#000000', // Color negro
     marginTop: 10,
+    marginLeft:10,
   },
   chatArea: {
     flex: 1,

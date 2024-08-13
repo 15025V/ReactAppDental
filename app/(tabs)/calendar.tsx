@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 
+
 const { width } = Dimensions.get('window');
 
 export default function DentalHealthScreen() {
@@ -11,6 +12,7 @@ export default function DentalHealthScreen() {
   return (
     <View style={styles.container}>
       <HeaderNoIcon />
+      
       <View style={styles.content}>
         <Text style={styles.greeting}>¡Hola [Nombre del Paciente]!</Text>
         <Text style={styles.message}>Actualmente, no tenemos una cita registrada a tu nombre.</Text>
@@ -54,4 +56,5 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+ 
 });
